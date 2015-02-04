@@ -1,0 +1,7 @@
+git log
+
+commit b924061ea14cd91ffbc34952de7b6bbe07e1ade8
+Author: mnovera <mnovera@gmail.com>
+Date:   Wed Feb 4 22:51:13 2015 +0800
+
+    first commit
