@@ -1,0 +1,268 @@
+$ git clone john@githost:simplegit.git
+Initialized empty Git repository in /home/john/simplegit/.git/
+...
+$ cd simplegit/
+$ vim lib/simplegit.rb
+$ git commit -am 'removed invalid default value'
+[master 738ee87] removed invalid default value
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+$ git clone jessica@githost:simplegit.git
+Initialized empty Git repository in /home/jessica/simplegit/.git/
+...
+$ cd simplegit/
+$ vim TODO
+$ git commit -am 'add reset task'
+[master fbff5bc] add reset task
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+
+$ git push origin master
+...
+To jessica@githost:simplegit.git
+   1edee6b..fbff5bc  master -> master
+
+$ git push origin master
+To john@githost:simplegit.git
+ ! [rejected]        master -> master (non-fast forward)
+error: failed to push some refs to 'john@githost:simplegit.git'
+
+$ git fetch origin
+...
+From john@githost:simplegit
+ + 049d078...fbff5bc master     -> origin/master
+
+$ git merge origin/master
+Merge made by recursive.
+ TODO |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+
+$ git push origin master
+...
+To john@githost:simplegit.git
+   fbff5bc..72bbc59  master -> master
+
+$ git fetch origin
+...
+From jessica@githost:simplegit
+   fbff5bc..72bbc59  master     -> origin/master
+
+$ git log --no-merges issue54..origin/master
+commit 738ee872852dfaa9d6634e0dea7a324040193016
+Author: John Smith <jsmith@example.com>
+Date:   Fri May 29 16:01:27 2009 -0700
+
+   removed invalid default value
+
+$ git checkout master
+Switched to branch 'master'
+Your branch is behind 'origin/master' by 2 commits, and can be fast-forwarded.
+
+$ git merge issue54
+Updating fbff5bc..4af4298
+Fast forward
+ README           |    1 +
+ lib/simplegit.rb |    6 +++++-
+ 2 files changed, 6 insertions(+), 1 deletions(-)
+
+$ git merge origin/master
+Auto-merging lib/simplegit.rb
+Merge made by recursive.
+ lib/simplegit.rb |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+$ git push origin master
+...
+To jessica@githost:simplegit.git
+   72bbc59..8059c15  master -> master
+
+$ git checkout -b featureA
+Switched to a new branch 'featureA'
+$ vim lib/simplegit.rb
+$ git commit -am 'add limit to log function'
+[featureA 3300904] add limit to log function
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+$ git push -u origin featureA
+...
+To jessica@githost:simplegit.git
+ * [new branch]      featureA -> featureA
+
+$ git fetch origin
+$ git checkout -b featureB origin/master
+Switched to a new branch 'featureB'
+
+$ vim lib/simplegit.rb
+$ git commit -am 'made the ls-tree function recursive'
+[featureB e5b0fdc] made the ls-tree function recursive
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+$ vim lib/simplegit.rb
+$ git commit -am 'add ls-files'
+[featureB 8512791] add ls-files
+ 1 files changed, 5 insertions(+), 0 deletions(-)
+
+$ git fetch origin
+...
+From jessica@githost:simplegit
+ * [new branch]      featureBee -> origin/featureBee
+
+$ git merge origin/featureBee
+Auto-merging lib/simplegit.rb
+Merge made by recursive.
+ lib/simplegit.rb |    4 ++++
+ 1 files changed, 4 insertions(+), 0 deletions(-)
+
+$ git push -u origin featureB:featureBee
+...
+To jessica@githost:simplegit.git
+   fba9af8..cd685d1  featureB -> featureBee
+
+$ git fetch origin
+...
+From jessica@githost:simplegit
+   3300904..aad881d  featureA   -> origin/featureA
+
+$ git log featureA..origin/featureA
+commit aad881d154acdaeb2b6b18ea0e827ed8a6d671e6
+Author: John Smith <jsmith@example.com>
+Date:   Fri May 29 19:57:33 2009 -0700
+
+    changed log output to 30 from 25
+
+$ git checkout featureA
+Switched to branch 'featureA'
+$ git merge origin/featureA
+Updating 3300904..aad881d
+Fast forward
+ lib/simplegit.rb |   10 +++++++++-
+1 files changed, 9 insertions(+), 1 deletions(-)
+
+$ git commit -am 'small tweak'
+[featureA 774b3ed] small tweak
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+$ git push
+...
+To jessica@githost:simplegit.git
+   3300904..774b3ed  featureA -> featureA
+
+$ git branch sc/ruby_client master
+
+$ git checkout -b sc/ruby_client master
+
+$ git apply /tmp/patch-ruby-client.patch
+
+$ git apply --check 0001-seeing-if-this-helps-the-gem.patch
+error: patch failed: ticgit.gemspec:1
+error: ticgit.gemspec: patch does not apply
+
+$ git am 0001-limit-log-function.patch
+Applying: add limit to log function
+
+$ git am 0001-seeing-if-this-helps-the-gem.patch
+Applying: seeing if this helps the gem
+error: patch failed: ticgit.gemspec:1
+error: ticgit.gemspec: patch does not apply
+Patch failed at 0001.
+When you have resolved this problem run "git am --resolved".
+If you would prefer to skip this patch, instead run "git am --skip".
+To restore the original branch and stop patching run "git am --abort".
+
+$ git branch sc/ruby_client master
+
+$ git checkout -b sc/ruby_client master
+
+$ git apply /tmp/patch-ruby-client.patch
+
+$ git apply --check 0001-seeing-if-this-helps-the-gem.patch
+error: patch failed: ticgit.gemspec:1
+error: ticgit.gemspec: patch does not apply
+
+$ git am 0001-limit-log-function.patch
+Applying: add limit to log function
+
+$ git am 0001-seeing-if-this-helps-the-gem.patch
+Applying: seeing if this helps the gem
+error: patch failed: ticgit.gemspec:1
+error: ticgit.gemspec: patch does not apply
+Patch failed at 0001.
+When you have resolved this problem run "git am --resolved".
+If you would prefer to skip this patch, instead run "git am --skip".
+To restore the original branch and stop patching run "git am --abort".
+
+$ git am -3 0001-seeing-if-this-helps-the-gem.patch
+Applying: seeing if this helps the gem
+error: patch failed: ticgit.gemspec:1
+error: ticgit.gemspec: patch does not apply
+Using index info to reconstruct a base tree...
+Falling back to patching base and 3-way merge...
+No changes -- Patch already applied.
+
+$ git am -3 -i mbox
+Commit Body is:
+--------------------------
+seeing if this helps the gem
+--------------------------
+Apply? [y]es/[n]o/[e]dit/[v]iew patch/[a]ccept all
+
+$ git remote add jessica git://github.com/jessica/myproject.git
+$ git fetch jessica
+$ git checkout -b rubyclient jessica/ruby-client
+
+$ git pull https://github.com/onetimeguy/project
+From https://github.com/onetimeguy/project
+ * branch            HEAD       -> FETCH_HEAD
+Merge made by recursive.
+
+$ git log contrib --not master
+commit 5b6235bd297351589efc4d73316f0a68d484f118
+Author: Scott Chacon <schacon@gmail.com>
+Date:   Fri Oct 24 09:53:59 2008 -0700
+
+    seeing if this helps the gem
+
+commit 7482e0d16d04bea79d0dba8988cc78df655f16a0
+Author: Scott Chacon <schacon@gmail.com>
+Date:   Mon Oct 22 19:38:36 2008 -0700
+
+    updated the gemspec to hopefully work better
+
+$ git diff master
+
+$ git merge-base contrib master
+36c7dba2c95e6bbb78dfa822519ecfec6e1ca649
+$ git diff 36c7db
+
+$ git diff master...contrib
+
+$ git cherry-pick e43a6fd3e94888d76779ad79fb568ed180e5fcdf
+Finished one cherry-pick.
+[master]: created a0a41a9: "More friendly message when locking the index fails."
+ 3 files changed, 17 insertions(+), 3 deletions(-)
+
+$ git tag -s v1.5 -m 'my signed 1.5 tag'
+You need a passphrase to unlock the secret key for
+user: "Scott Chacon <schacon@gmail.com>"
+1024-bit DSA key, ID F721C45A, created 2009-02-09
+
+$ gpg --list-keys
+/Users/schacon/.gnupg/pubring.gpg
+---------------------------------
+pub   1024D/F721C45A 2009-02-09 [expires: 2010-02-09]
+uid                  Scott Chacon <schacon@gmail.com>
+sub   2048g/45D02282 2009-02-09 [expires: 2010-02-09]
+
+$ gpg -a --export F721C45A | git hash-object -w --stdin
+659ef797d181633c87ec71ac3f9ba29fe5775b92
+
+$ gpg -a --export F721C45A | git hash-object -w --stdin
+659ef797d181633c87ec71ac3f9ba29fe5775b92
+
+$ git tag -a maintainer-pgp-pub 659ef797d181633c87ec71ac3f9ba29fe5775b92
+
+$ git show maintainer-pgp-pub | gpg --import
+
+$ git describe master
+v1.6.2-rc1-20-g8c5b85c
+
+$ git archive master --prefix='project/' | gzip > `git describe master`.tar.gz
+$ ls *.tar.gz
+v1.6.2-rc1-20-g8c5b85c.tar.gz

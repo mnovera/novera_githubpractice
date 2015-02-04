@@ -1,0 +1,137 @@
+$ git clone /opt/git/project.git
+
+$ cd /var/www/htdocs/
+$ git clone --bare /path/to/git_project gitproject.git
+$ cd gitproject.git
+$ mv hooks/post-update.sample hooks/post-update
+$ chmod a+x hooks/post-update
+
+$ git clone ssh://user@server/project.git
+
+$ git clone user@server:project.git
+
+$ git clone --bare my_project my_project.git
+Cloning into bare repository 'my_project.git'...
+done.
+
+$ cp -Rf my_project/.git my_project.git
+
+$ scp -r my_project.git user@git.example.com:/opt/git
+
+$ git clone user@git.example.com:/opt/git/my_project.git
+
+$ ssh user@git.example.com
+$ cd /opt/git/my_project.git
+$ git init --bare --shared
+
+$ cd ~/.ssh
+$ ls
+authorized_keys2  id_dsa       known_hosts
+config            id_dsa.pub
+
+$ ssh-keygen
+
+Generating public/private rsa key pair.
+Enter file in which to save the key (/c/Users/Overeverence/.ssh/id_rsa):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /c/Users/Overeverence/.ssh/id_rsa.
+Your public key has been saved in /c/Users/Overeverence/.ssh/id_rsa.pub.
+The key fingerprint is:
+39:8d:1a:79:52:9a:29:2f:65:9d:ac:f3:52:9b:ba:01 Overeverence@OVEREVERENCE-PC
+The key's randomart image is:
++--[ RSA 2048]----+
+|                 |
+|                 |
+|        .        |
+|       O =       |
+|    E X S .      |
+|     * *..       |
+|    . *. o       |
+|     ..+o        |
+|      o+.        |
++-----------------+
+
+$ cat ~/.ssh/id_rsa.pub
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDTOtSE1nW0ERBnWSKeTTK78P8M8xda2TV7obP36AG
+LI4tpMq8dSB3V+1DMJa45J9jwDltbMM6vlkOAv1fTMyRljfKVfav7+anluLXkwu299RLtJkng3ufF24
+FOl6L4Nf6xwO1rp0gaQjXXc/A/LSG7nVeIuBflVnUsbstwt6V9vlRJYUs1uYRQ0OdF1XvGRWlDuaBVz
+zO+GoMGHG4D1cwiS1rFM9RMoqse/anJX4Xsepu/YwbGRTxahrWgrUEPV0gBeOQwKZ5aQUSHZI799pyF
+JhtcstrAWutyEZa9ZURGvJKOn3abHHBVcRD0iL7pw8QIPP6iQmE26gLCQ/T4OguH Overeverence@O
+VEREVERENCE-PC
+
+$ sudo adduser git
+$ su git
+$ cd
+$ mkdir .ssh && chmod 700 .ssh
+$ touch .ssh/authorized_keys && chmod 600 .ssh/authorized_keys
+
+$ cat /tmp/id_rsa.john.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCB007n/ww+ouN4gSLKssMxXnBOvf9LGt4L
+ojG6rs6hPB09j9R/T17/x4lhJA0F3FR1rP6kYBRsWj2aThGw6HXLm9/5zytK6Ztg3RPKK+4k
+Yjh6541NYsnEAZuXz0jTTyAUfrtU3Z5E003C4oxOj6H0rfIF1kKI9MAQLMdpGW1GYEIgS9Ez
+Sdfd8AcCIicTDWbqLAcU4UpkaX8KyGlLwsNuuGztobF8m72ALC/nLF6JLtPofwFBlgc+myiv
+O7TCUSBdLQlgMVOFq1I2uPWQOkOWQAHukEOmfjy2jctxSDBQ220ymjaNsHT4kgtZg2AYYgPq
+dAv8JggJICUvax2T9va5 gsg-keypair
+
+$ cat /tmp/id_rsa.john.pub >> ~/.ssh/authorized_keys
+$ cat /tmp/id_rsa.josie.pub >> ~/.ssh/authorized_keys
+$ cat /tmp/id_rsa.jessica.pub >> ~/.ssh/authorized_keys
+
+$ cd /opt/git
+$ mkdir project.git
+$ cd project.git
+$ git init --bare
+Initialized empty Git repository in /opt/git/project.git/
+
+# on Johns computer
+$ cd myproject
+$ git init
+$ git add .
+$ git commit -m 'initial commit'
+$ git remote add origin git@gitserver:/opt/git/project.git
+$ git push origin master
+
+$ git clone git@gitserver:/opt/git/project.git
+$ cd project
+$ vim README
+$ git commit -am 'fix for the README file'
+$ git push origin master
+
+$ cat /etc/shells   # see if `git-shell` is already in there.  If not...
+$ which git-shell   # make sure git-shell is installed on your system.
+$ sudo vim /etc/shells  # and add the path to git-shell from last command
+
+$ ssh git@gitserver
+fatal: Interactive git shell is not enabled.
+hint: ~/git-shell-commands should exist and have read and execute access.
+Connection to gitserver closed.
+
+$ cd /path/to/project.git
+$ touch git-daemon-export-ok
+
+$ sudo apt-get install apache2 apache2-utils
+$ a2enmod cgi alias env
+
+$ htdigest -c /opt/git/.htpasswd "Git Access" schacon
+
+$ git instaweb --httpd=webrick
+[2009-02-21 10:02:21] INFO  WEBrick 1.3.1
+[2009-02-21 10:02:21] INFO  ruby 1.8.6 (2008-03-03) [universal-darwin9.0]
+
+$ git instaweb --httpd=webrick --stop
+
+$ git clone git://git.kernel.org/pub/scm/git/git.git
+$ cd git/
+$ make GITWEB_PROJECTROOT="/opt/git" prefix=/usr gitweb
+    SUBDIR gitweb
+    SUBDIR ../
+make[2]: `GIT-VERSION-FILE' is up to date.
+    GEN gitweb.cgi
+    GEN static/gitweb.js
+$ sudo cp -Rf gitweb /var/www/
+
+$ git remote add gitlab https://server/namespace/project.git
+
+$ git clone https://server/namespace/project.git

@@ -1,7 +1,294 @@
-git log
+$ git log
 
 commit b924061ea14cd91ffbc34952de7b6bbe07e1ade8
 Author: mnovera <mnovera@gmail.com>
 Date:   Wed Feb 4 22:51:13 2015 +0800
 
     first commit
+
+$ git log -p -2
+
+commit 7e12bc01274af01f150d5e338db96f150ddcaa4b
+Author: mnovera <mnovera@gmail.com>
+Date:   Wed Feb 4 23:28:04 2015 +0800
+
+    Initial commit
+
+diff --git a/chptr1/README b/chptr1/README
+new file mode 100644
+index 0000000..22af10d
+Binary files /dev/null and b/chptr1/README differ
+diff --git a/chptr1/chapter1_answers.txt b/chptr1/chapter1_answers.txt
+new file mode 100644
+index 0000000..8b00428
+--- /dev/null
++++ b/chptr1/chapter1_answers.txt
+@@ -0,0 +1,25 @@
++git config -- list
++
++alias.c=commit
++
+commit e21d3919f277d2514baa3e0a1b0abb33ada05d5a
+Author: mnovera <mnovera@gmail.com>
+Date:   Wed Feb 4 23:32:58 2015 +0800
+
+    initial commit
+
+diff --git a/chptr1/README b/chptr1/README
+deleted file mode 100644
+index 22af10d..0000000
+Binary files a/chptr1/README and /dev/null differ
+diff --git a/chptr1/README.txt b/chptr1/README.txt
+deleted file mode 100644
+index 30736e5..0000000
+--- a/chptr1/README.txt
++++ /dev/null
+@@ -1 +0,0 @@
+-read
+diff --git a/chptr2/chapter2_answers.txt b/chptr2/chapter2_answers.txt
+new file mode 100644
+index 0000000..dbe01f6
+--- /dev/null
++++ b/chptr2/chapter2_answers.txt
+@@ -0,0 +1,7 @@
++git log
+
+commit e21d3919f277d2514baa3e0a1b0abb33ada05d5a
+Author: mnovera <mnovera@gmail.com>
+Date:   Wed Feb 4 23:32:58 2015 +0800
+
+    initial commit
+
+ chptr1/README               | Bin 26 -> 0 bytes
+ chptr1/README.txt           |   1 -
+ chptr2/chapter2_answers.txt |   7 +++++++
+ 3 files changed, 7 insertions(+), 1 deletion(-)
+
+commit 7e12bc01274af01f150d5e338db96f150ddcaa4b
+Author: mnovera <mnovera@gmail.com>
+Date:   Wed Feb 4 23:28:04 2015 +0800
+
+    Initial commit
+
+ chptr1/README               | Bin 0 -> 26 bytes
+ chptr1/chapter1_answers.txt |  25 +++++++++++++++++++++++++
+ 2 files changed, 25 insertions(+)
+
+commit b924061ea14cd91ffbc34952de7b6bbe07e1ade8
+Author: mnovera <mnovera@gmail.com>
+Date:   Wed Feb 4 22:51:13 2015 +0800
+
+$ git log --pretty=oneline
+
+e21d3919f277d2514baa3e0a1b0abb33ada05d5a initial commit
+7e12bc01274af01f150d5e338db96f150ddcaa4b Initial commit
+b924061ea14cd91ffbc34952de7b6bbe07e1ade8 first commit
+
+$ git log --pretty=format:"%h - %an, %ar : %s"
+
+e21d391 - mnovera, 11 minutes ago : initial commit
+7e12bc0 - mnovera, 16 minutes ago : Initial commit
+b924061 - mnovera, 52 minutes ago : first commit
+
+$ git log --pretty=format:"%h %s" --graph
+
+* e21d391 initial commit
+* 7e12bc0 Initial commit
+* b924061 first commit
+
+$ git log --since=2.weeks
+
+e21d3919f277d2514baa3e0a1b0abb33ada05d5a initial commit
+7e12bc01274af01f150d5e338db96f150ddcaa4b Initial commit
+b924061ea14cd91ffbc34952de7b6bbe07e1ade8 first commit
+C:\Users\Overeverence\Documents\GitHub\novera_githubpractice\chptr2 [master +0 ~
+1 -0]> git log --pretty=format:"%h - %an, %ar : %s"
+e21d391 - mnovera, 11 minutes ago : initial commit
+7e12bc0 - mnovera, 16 minutes ago : Initial commit
+b924061 - mnovera, 52 minutes ago : first commit
+C:\Users\Overeverence\Documents\GitHub\novera_githubpractice\chptr2 [master +0 ~
+1 -0]> git log --pretty=format:"%h %s" --graph
+* e21d391 initial commit
+* 7e12bc0 Initial commit
+* b924061 first commit
+C:\Users\Overeverence\Documents\GitHub\novera_githubpractice\chptr2 [master +0 ~
+1 -0]> git log --since=2.weeks
+commit e21d3919f277d2514baa3e0a1b0abb33ada05d5a
+Author: mnovera <mnovera@gmail.com>
+Date:   Wed Feb 4 23:32:58 2015 +0800
+
+    initial commit
+
+commit 7e12bc01274af01f150d5e338db96f150ddcaa4b
+Author: mnovera <mnovera@gmail.com>
+Date:   Wed Feb 4 23:28:04 2015 +0800
+
+    Initial commit
+
+commit b924061ea14cd91ffbc34952de7b6bbe07e1ade8
+Author: mnovera <mnovera@gmail.com>
+Date:   Wed Feb 4 22:51:13 2015 +0800
+
+    first commit
+
+$ git log -Sfunction_name
+
+$ git clone https://github.com/schacon/ticgit
+
+Cloning into 'ticgit'...
+remote: Counting objects: 1857, done.
+remote: Total 1857 (delta 0), reused 0 (delta 0)
+Receiving objects: 100% (1857/1857), 374.35 KiB | 75.00 KiB/s, done.
+Resolving deltas: 100% (772/772), done.
+Checking connectivity... done.
+
+$ git remote -v
+origin	https://github.com/schacon/ticgit (fetch)
+origin	https://github.com/schacon/ticgit (push)
+
+$ cd grit
+$ git remote -v
+bakkdoor  https://github.com/bakkdoor/grit (fetch)
+bakkdoor  https://github.com/bakkdoor/grit (push)
+cho45     https://github.com/cho45/grit (fetch)
+cho45     https://github.com/cho45/grit (push)
+defunkt   https://github.com/defunkt/grit (fetch)
+defunkt   https://github.com/defunkt/grit (push)
+koke      git://github.com/koke/grit.git (fetch)
+koke      git://github.com/koke/grit.git (push)
+origin    git@github.com:mojombo/grit.git (fetch)
+origin    git@github.com:mojombo/grit.git (push)
+
+$ git remote
+origin
+$ git remote add pb https://github.com/paulboone/ticgit
+$ git remote -v
+origin	https://github.com/schacon/ticgit (fetch)
+origin	https://github.com/schacon/ticgit (push)
+pb	https://github.com/paulboone/ticgit (fetch)
+pb	https://github.com/paulboone/ticgit (push)
+
+$ git fetch pb
+remote: Counting objects: 43, done.
+remote: Compressing objects: 100% (36/36), done.
+remote: Total 43 (delta 10), reused 31 (delta 5)
+Unpacking objects: 100% (43/43), done.
+From https://github.com/paulboone/ticgit
+ * [new branch]      master     -> pb/master
+ * [new branch]      ticgit     -> pb/ticgit
+
+$ git remote show origin
+* remote origin
+  Fetch URL: https://github.com/schacon/ticgit
+  Push  URL: https://github.com/schacon/ticgit
+  HEAD branch: master
+  Remote branches:
+    master                               tracked
+    dev-branch                           tracked
+  Local branch configured for 'git pull':
+    master merges with remote master
+  Local ref configured for 'git push':
+    master pushes to master (up to date)
+
+$ git remote show origin
+* remote origin
+  URL: https://github.com/my-org/complex-project
+  Fetch URL: https://github.com/my-org/complex-project
+  Push  URL: https://github.com/my-org/complex-project
+  HEAD branch: master
+  Remote branches:
+    master                           tracked
+    dev-branch                       tracked
+    markdown-strip                   tracked
+    issue-43                         new (next fetch will store in remotes/origin)
+    issue-45                         new (next fetch will store in remotes/origin)
+    refs/remotes/origin/issue-11     stale (use 'git remote prune' to remove)
+  Local branches configured for 'git pull':
+    dev-branch merges with remote dev-branch
+    master     merges with remote master
+  Local refs configured for 'git push':
+    dev-branch                     pushes to dev-branch                     (up to date)
+    markdown-strip                 pushes to markdown-strip                 (up to date)
+    master                         pushes to master                         (up to date)
+
+$ git tag -a v1.4 -m 'my version 1.4'
+$ git tag
+
+v1.4
+
+$ git show v1.4
+tag v1.4
+Tagger: mnovera <mnovera@gmail.com>
+Date:   Thu Feb 5 00:30:24 2015 +0800
+
+my version 1.4
+
+commit 847256809a3d518cd36b8f81859401416fe8d945
+Author: Jeff Welling <Jeff.Welling@Gmail.com>
+Date:   Tue Apr 26 17:29:17 2011 -0700
+
+    Added note to clarify which is the canonical TicGit-ng repo
+
+diff --git a/README.mkd b/README.mkd
+index ab92035..9ea9ff9 100644
+--- a/README.mkd
++++ b/README.mkd
+@@ -1,3 +1,6 @@
++Note: the original TicGit author has pulled all the TicGit-ng changes into his
++https://github.com/jeffWelling/ticgit
++
+
+$ git tag v1.4-lw
+
+$ git tag
+v1.4
+v1.4-lw
+
+$ git show v1.4-lw
+
+commit 847256809a3d518cd36b8f81859401416fe8d945
+Author: Jeff Welling <Jeff.Welling@Gmail.com>
+Date:   Tue Apr 26 17:29:17 2011 -0700
+
+$ git push origin v1.5
+
+Counting objects: 14, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (12/12), done.
+Writing objects: 100% (14/14), 2.05 KiB | 0 bytes/s, done.
+Total 14 (delta 3), reused 0 (delta 0)
+To git@github.com:schacon/simplegit.git
+ * [new tag]         v1.5 -> v1.5
+
+
+$ git push origin --tags
+Counting objects: 1, done.
+Writing objects: 100% (1/1), 160 bytes | 0 bytes/s, done.
+Total 1 (delta 0), reused 0 (delta 0)
+To git@github.com:schacon/simplegit.git
+ * [new tag]         v1.4 -> v1.4
+ * [new tag]         v1.4-lw -> v1.4-lw
+
+$ git config --global alias.co checkout
+$ git config --global alias.br branch
+$ git config --global alias.ci commit
+$ git config --global alias.st status
+
+$ git config --global alias.unstage 'reset HEAD --'
+
+$ git unstage fileA
+$ git reset HEAD fileA
+
+$ git config --global alias.last 'log -1 HEAD'
+
+$ git config --global alias.last 'log -1 HEAD'
+
+$ git last
+
+commit 847256809a3d518cd36b8f81859401416fe8d945
+Author: Jeff Welling <Jeff.Welling@Gmail.com>
+Date:   Tue Apr 26 17:29:17 2011 -0700
+
+$ git config --global alias.visual "!gitk"
+
+

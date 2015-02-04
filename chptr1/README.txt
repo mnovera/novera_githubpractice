@@ -1,0 +1,1 @@
+This chapter basically covers what Git is and its difference from the other versions of control system that we might have used.This covers Git's history and various tools being used. This chapter also provided us instructions regarding setting up Git and repositories.

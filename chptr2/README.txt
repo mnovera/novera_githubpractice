@@ -1,0 +1,1 @@
+In this chapter basic Git operations on the local level are taught. Some of them are creating and cloning a repository, committing and staging those said changes. Viewing of the history of the changes in the repository has been taught too. A few other techniques have been also taught such as tagging and aliases.
