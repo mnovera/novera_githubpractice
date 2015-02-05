@@ -1,0 +1,1 @@
+In this chapter, the basic principles of merging and branching were taught. Creation and switching to different branches were covered whether it be switching or merging, this chapter has covered it. Using a shared server and the concepts of working with others on that shared server was also covered on this chapter.Rebasing your branches before they are shared is a must.

@@ -1,0 +1,1 @@
+This chapter just basically cover the distribution of Git. This entails contributing to a current project in Git or creating and maintaining your own project as well as integrating other users' contributions.

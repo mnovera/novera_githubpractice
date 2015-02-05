@@ -1,0 +1,1 @@
+This chapter covers creating an account, managing an organization, creating and pushing repositories, contributing to the project of other people and accepting contributions from others. This also covers the basics of scripting in GitHub
